@@ -1,0 +1,69 @@
+// алгоритм сортировки выбором
+class Main {
+public static void selectionSort(int[] sortArr) {
+    for (int i = 0; i < sortArr.length; i++) {
+        int pos = i;
+        int min = sortArr[i];
+        //цикл выбора наименьшего элемента
+        for (int j = i + 1; j < sortArr.length; j++) {
+            if (sortArr[j] < min) {
+                //pos - индекс наименьшего элемента
+                pos = j;
+                min = sortArr[j];
+            }
+        }
+        sortArr[pos] = sortArr[i];
+        sortArr[i] = min;
+    }
+}
+
+public static void main(String args[]) {
+    int[] sortArr = {13, 3, 15, 7, 18, 11};
+    selectionSort(sortArr);
+    for(int i = 0; i < sortArr.length; i++){
+        System.out.print(sortArr[i] + "\n");
+    }
+}
+}
+//алгоритм сортировки слиянием
+class Main
+{
+    public static void mergeSort(int[] a, int n) {
+        if (n < 2) {
+            return;
+        }
+        int mid = n / 2;
+        int[] l = new int[mid];
+        int[] r = new int[n - mid];
+    
+        for (int i = 0; i < mid; i++) {
+            l[i] = a[i];
+        }
+        for (int i = mid; i < n; i++) {
+            r[i - mid] = a[i];
+        }
+        mergeSort(l, mid);
+        mergeSort(r, n - mid);
+    
+        merge(a, l, r, mid, n - mid);
+    }
+    public static void merge(
+  int[] a, int[] l, int[] r, int left, int right) {
+ 
+    int i = 0, j = 0, k = 0;
+    while (i < left && j < right) {
+        if (l[i] <= r[j]) {
+            a[k++] = l[i++];
+        }
+        else {
+            a[k++] = r[j++];
+        }
+    }
+    while (i < left) {
+        a[k++] = l[i++];
+    }
+    while (j < right) {
+        a[k++] = r[j++];
+    }
+}
+}
